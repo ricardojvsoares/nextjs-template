@@ -1,11 +1,11 @@
-'use client'
+'use client';
 
-import { useEffect } from 'react'
-import { useBreadcrumb } from './breadcrumb.context'
-import type { BreadcrumbSegment } from './breadcrumb'
+import { useEffect } from 'react';
+import { useBreadcrumb } from './breadcrumb.context';
+import type { BreadcrumbSegment } from './breadcrumb';
 
 interface BreadcrumbProps {
-  segments: BreadcrumbSegment[]
+  segments: BreadcrumbSegment[];
 }
 
 /**
@@ -25,15 +25,15 @@ interface BreadcrumbProps {
  *   ]} />
  */
 export function Breadcrumb({ segments }: BreadcrumbProps) {
-  const setSegments = useBreadcrumb()
+  const setSegments = useBreadcrumb();
 
   useEffect(() => {
-    setSegments(segments)
+    setSegments(segments);
     // Clear on unmount so stale crumbs don't bleed into the next route
-    return () => setSegments([])
-  // Re-run only when the content meaningfully changes
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [JSON.stringify(segments)])
+    return () => setSegments([]);
+    // Re-run only when the content meaningfully changes
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [JSON.stringify(segments)]);
 
-  return null
+  return null;
 }

@@ -4,18 +4,18 @@ import {
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
-  BreadcrumbSeparator
-} from '@/components/ui/breadcrumb'
-import React from 'react'
+  BreadcrumbSeparator,
+} from '@/components/ui/breadcrumb';
+import React from 'react';
 
 export interface BreadcrumbSegment {
-  label: string
-  href?: string
+  label: string;
+  href?: string;
 }
 
 interface AppBreadcrumbProps {
-  segments: BreadcrumbSegment[]
-  className?: string
+  segments: BreadcrumbSegment[];
+  className?: string;
 }
 
 /**
@@ -35,13 +35,13 @@ interface AppBreadcrumbProps {
  *   />
  */
 const AppBreadcrumb = ({ segments, className }: AppBreadcrumbProps) => {
-  if (!segments.length) return null
+  if (!segments.length) return null;
 
   return (
     <Breadcrumb className={className}>
       <BreadcrumbList>
         {segments.map((segment, index) => {
-          const isLast = index === segments.length - 1
+          const isLast = index === segments.length - 1;
 
           return (
             <React.Fragment key={`${segment.label}-${index}`}>
@@ -49,18 +49,16 @@ const AppBreadcrumb = ({ segments, className }: AppBreadcrumbProps) => {
                 {isLast ? (
                   <BreadcrumbPage>{segment.label}</BreadcrumbPage>
                 ) : (
-                  <BreadcrumbLink href={segment.href ?? '#'}>
-                    {segment.label}
-                  </BreadcrumbLink>
+                  <BreadcrumbLink href={segment.href ?? '#'}>{segment.label}</BreadcrumbLink>
                 )}
               </BreadcrumbItem>
               {!isLast && <BreadcrumbSeparator />}
             </React.Fragment>
-          )
+          );
         })}
       </BreadcrumbList>
     </Breadcrumb>
-  )
-}
+  );
+};
 
-export default AppBreadcrumb
+export default AppBreadcrumb;

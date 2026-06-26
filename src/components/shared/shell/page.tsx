@@ -1,11 +1,11 @@
-import { cn } from '@/lib/utils'
-import React from 'react'
+import { cn } from '@/lib/utils';
+import React from 'react';
 
 // ─── Page (root) ─────────────────────────────────────────────────────────────
 
 interface PageProps {
-  children: React.ReactNode
-  className?: string
+  children: React.ReactNode;
+  className?: string;
 }
 
 /**
@@ -28,13 +28,13 @@ interface PageProps {
  */
 const Page = ({ children, className }: PageProps) => (
   <div className={cn('flex flex-col gap-6', className)}>{children}</div>
-)
+);
 
 // ─── Page.Header ─────────────────────────────────────────────────────────────
 
 interface PageHeaderProps {
-  children: React.ReactNode
-  className?: string
+  children: React.ReactNode;
+  className?: string;
 }
 
 /**
@@ -45,52 +45,44 @@ interface PageHeaderProps {
  */
 const PageHeader = ({ children, className }: PageHeaderProps) => (
   <div
-    className={cn(
-      'flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between',
-      className
-    )}
+    className={cn('flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between', className)}
   >
     {children}
   </div>
-)
+);
 
 // ─── Page.Title ───────────────────────────────────────────────────────────────
 
 interface PageTitleProps {
-  children: React.ReactNode
-  className?: string
+  children: React.ReactNode;
+  className?: string;
   /** Rendered element — default h1 */
-  as?: React.ElementType
+  as?: React.ElementType;
 }
 
 const PageTitle = ({ children, className, as: Tag = 'h1' }: PageTitleProps) => (
-  <Tag
-    className={cn(
-      'text-foreground text-2xl font-semibold tracking-tight',
-      className
-    )}
-  >
+  <Tag className={cn('text-foreground text-2xl font-semibold tracking-tight', className)}>
     {children}
   </Tag>
-)
+);
 
 // ─── Page.Description ─────────────────────────────────────────────────────────
 
 interface PageDescriptionProps {
-  children: React.ReactNode
-  className?: string
+  children: React.ReactNode;
+  className?: string;
 }
 
 const PageDescription = ({ children, className }: PageDescriptionProps) => (
   <p className={cn('text-muted-foreground text-sm', className)}>{children}</p>
-)
+);
 
 // ─── Page.Heading (Title + Description stacked) ───────────────────────────────
 
 interface PageHeadingProps {
-  title: string
-  description?: string
-  className?: string
+  title: string;
+  description?: string;
+  className?: string;
 }
 
 /**
@@ -104,13 +96,13 @@ const PageHeading = ({ title, description, className }: PageHeadingProps) => (
     <PageTitle>{title}</PageTitle>
     {description && <PageDescription>{description}</PageDescription>}
   </div>
-)
+);
 
 // ─── Page.Actions ─────────────────────────────────────────────────────────────
 
 interface PageActionsProps {
-  children: React.ReactNode
-  className?: string
+  children: React.ReactNode;
+  className?: string;
 }
 
 /**
@@ -119,16 +111,14 @@ interface PageActionsProps {
  * Right-aligned slot for CTAs, filters, or toolbar items inside Page.Header.
  */
 const PageActions = ({ children, className }: PageActionsProps) => (
-  <div className={cn('flex shrink-0 items-center gap-2', className)}>
-    {children}
-  </div>
-)
+  <div className={cn('flex shrink-0 items-center gap-2', className)}>{children}</div>
+);
 
 // ─── Page.Content ─────────────────────────────────────────────────────────────
 
 interface PageContentProps {
-  children: React.ReactNode
-  className?: string
+  children: React.ReactNode;
+  className?: string;
 }
 
 /**
@@ -138,13 +128,13 @@ interface PageContentProps {
  */
 const PageContent = ({ children, className }: PageContentProps) => (
   <div className={cn('flex-1 flex flex-col gap-4', className)}>{children}</div>
-)
+);
 
 // ─── Page.Section ─────────────────────────────────────────────────────────────
 
 interface PageSectionProps {
-  children: React.ReactNode
-  className?: string
+  children: React.ReactNode;
+  className?: string;
 }
 
 /**
@@ -155,19 +145,19 @@ interface PageSectionProps {
  */
 const PageSection = ({ children, className }: PageSectionProps) => (
   <section className={cn('flex flex-col gap-4 ', className)}>{children}</section>
-)
+);
 
 // ─── Compound assembly ────────────────────────────────────────────────────────
 
-Page.Header = PageHeader
-Page.Title = PageTitle
-Page.Description = PageDescription
-Page.Heading = PageHeading
-Page.Actions = PageActions
-Page.Content = PageContent
-Page.Section = PageSection
+Page.Header = PageHeader;
+Page.Title = PageTitle;
+Page.Description = PageDescription;
+Page.Heading = PageHeading;
+Page.Actions = PageActions;
+Page.Content = PageContent;
+Page.Section = PageSection;
 
-export { Page }
+export { Page };
 export type {
   PageProps,
   PageHeaderProps,
@@ -176,5 +166,5 @@ export type {
   PageHeadingProps,
   PageActionsProps,
   PageContentProps,
-  PageSectionProps
-}
+  PageSectionProps,
+};
