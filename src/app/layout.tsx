@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-import { Outfit, Geist_Mono } from "next/font/google";
+import { Outfit, Geist_Mono, Inter } from "next/font/google";
 import "./globals.css";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { cn } from "@/lib/utils";
 
-const fontSans = Outfit({
-  subsets: ["latin"],
-  variable: "--font-sans",
-});
+const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 
 const fontMono = Geist_Mono({
   subsets: ["latin"],
@@ -23,9 +22,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${fontSans.variable} ${fontMono.variable} antialiased`}>
-        {children}
+    <html lang="en" className={cn("font-sans", inter.variable)}>
+      <body className={`${inter.variable} ${fontMono.variable} antialiased`}>
+        <TooltipProvider>{children}</TooltipProvider>
       </body>
     </html>
   );
