@@ -9,7 +9,7 @@ export default function DashboardLayout({
     <Shell
       breadcrumbs={[
         { label: 'Home', href: '/' },
-        { label: 'Dashboard' }         // last item → no link (BreadcrumbPage)
+        { label: 'Dashboard' }        
       ]}
     >
       {children}

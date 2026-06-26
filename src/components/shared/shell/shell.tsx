@@ -7,6 +7,7 @@ import {
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
+  SidebarHeader,
   SidebarMenu,
   SidebarMenuBadge,
   SidebarMenuButton,
@@ -19,17 +20,12 @@ import AppBreadcrumb, { type BreadcrumbSegment } from '@/components/shared/shell
 import LanguageDropdown from '@/components/shadcn-studio/blocks/dropdown-language'
 import ProfileDropdown from '@/components/shadcn-studio/blocks/dropdown-profile'
 
-import FacebookIcon from '@/assets/svg/facebook-icon'
-import InstagramIcon from '@/assets/svg/instagram-icon'
-import LinkedinIcon from '@/assets/svg/linkedin-icon'
-import TwitterIcon from '@/assets/svg/twitter-icon'
-
 import {
   LanguagesIcon
 } from 'lucide-react'
 import React from 'react'
 
-import { NAV_MAIN, NAV_PAGES, NAV_SUPPORT } from './shell.config'
+import { NAV_HEADER, NAV_MAIN, NAV_PAGES, NAV_SUPPORT } from './shell.config'
 
 
 
@@ -66,13 +62,24 @@ interface ShellProps {
  */
 const Shell = ({ children, breadcrumbs }: ShellProps) => {
   return (
-    <div className='flex min-h-dvh w-full'>
+    <div className='flex h-dvh w-full overflow-hidden'>
       <SidebarProvider>
 
         {/* ── Sidebar ── */}
         <Sidebar>
           <SidebarContent>
-
+            <SidebarHeader>
+                    <SidebarMenu>
+                      <SidebarMenuItem>
+                        <SidebarMenuButton size="lg" asChild>
+                          <a href="#">
+                            <NAV_HEADER.icon />
+                            <span>{NAV_HEADER.label}</span>
+                          </a>
+                        </SidebarMenuButton>
+                      </SidebarMenuItem>
+                    </SidebarMenu>
+                  </SidebarHeader>
             {/* Main */}
             <SidebarGroup>
               <SidebarGroupContent>
@@ -143,11 +150,11 @@ const Shell = ({ children, breadcrumbs }: ShellProps) => {
         </Sidebar>
 
         {/* ── Shell body ── */}
-        <div className='flex flex-1 flex-col'>
+        <div className='flex flex-1 flex-col min-h-0 overflow-hidden'>
 
           {/* Header */}
           <header className='bg-card sticky top-0 z-50 border-b'>
-            <div className='mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-2 sm:px-6'>
+            <div className='mx-auto flex w-full items-center justify-between gap-6 px-4 py-2 sm:px-6'>
               <div className='flex items-center gap-4'>
                 <SidebarTrigger className='[&_svg]:size-5!' />
                 {breadcrumbs?.length ? (
@@ -190,28 +197,9 @@ const Shell = ({ children, breadcrumbs }: ShellProps) => {
           </header>
 
           {/* ── Page content slot ── */}
-          <main className='mx-auto size-full max-w-7xl flex-1 px-4 py-6 sm:px-6'>
+          <main className='flex-1 overflow-y-auto px-4 py-6 sm:px-6'>
             {children}
           </main>
-
-          {/* Footer */}
-          <footer>
-            <div className='text-muted-foreground mx-auto flex size-full max-w-7xl items-center justify-between gap-3 px-4 py-3 max-sm:flex-col sm:gap-6 sm:px-6'>
-              <p className='text-sm text-balance max-sm:text-center'>
-                {`©${new Date().getFullYear()}`}{' '}
-                <a href='#' className='text-primary'>
-                  shadcn/studio
-                </a>
-                , Made for better web design
-              </p>
-              <div className='flex items-center gap-5'>
-                <a href='#'><FacebookIcon className='size-4' /></a>
-                <a href='#'><InstagramIcon className='size-4' /></a>
-                <a href='#'><LinkedinIcon className='size-4' /></a>
-                <a href='#'><TwitterIcon className='size-4' /></a>
-              </div>
-            </div>
-          </footer>
 
         </div>
       </SidebarProvider>

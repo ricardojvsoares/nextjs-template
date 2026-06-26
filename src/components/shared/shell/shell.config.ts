@@ -12,7 +12,16 @@ import {
     CalendarClockIcon,
     Undo2Icon,
     SettingsIcon,
+    HomeIcon,
   } from 'lucide-react'
+
+const NAV_HEADER = 
+    {
+      label: 'Home',
+      href: '/dashboard',
+      icon: HomeIcon,
+    }
+  
 
 const NAV_MAIN = [
     {
@@ -42,4 +51,4 @@ const NAV_MAIN = [
     { label: 'User Management', href: '#', icon: UsersIcon }
   ]
 
-export { NAV_MAIN, NAV_PAGES, NAV_SUPPORT }
+export { NAV_HEADER, NAV_MAIN, NAV_PAGES, NAV_SUPPORT }

@@ -137,7 +137,7 @@ interface PageContentProps {
  * Main content area. Fills remaining vertical space.
  */
 const PageContent = ({ children, className }: PageContentProps) => (
-  <div className={cn('flex-1', className)}>{children}</div>
+  <div className={cn('flex-1 flex flex-col gap-4', className)}>{children}</div>
 )
 
 // ─── Page.Section ─────────────────────────────────────────────────────────────
@@ -154,7 +154,7 @@ interface PageSectionProps {
  * groups of related content within the same page.
  */
 const PageSection = ({ children, className }: PageSectionProps) => (
-  <section className={cn('flex flex-col gap-4', className)}>{children}</section>
+  <section className={cn('flex flex-col gap-4 ', className)}>{children}</section>
 )
 
 // ─── Compound assembly ────────────────────────────────────────────────────────
