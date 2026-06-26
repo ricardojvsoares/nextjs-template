@@ -7,10 +7,6 @@ export default function DashboardLayout({
 }) {
   return (
     <Shell
-      breadcrumbs={[
-        { label: 'Home', href: '/' },
-        { label: 'Dashboard' }        
-      ]}
     >
       {children}
     </Shell>

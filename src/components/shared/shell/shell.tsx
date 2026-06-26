@@ -1,3 +1,5 @@
+'use client'
+
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
@@ -16,51 +18,20 @@ import {
   SidebarTrigger
 } from '@/components/ui/sidebar'
 
-import AppBreadcrumb, { type BreadcrumbSegment } from '@/components/shared/shell/breadcrumb'
+import AppBreadcrumb from '@/components/shared/shell/breadcrumb'
+import { BreadcrumbProvider, useBreadcrumbSegments } from '@/components/shared/shell/breadcrumb.context'
 import LanguageDropdown from '@/components/shadcn-studio/blocks/dropdown-language'
 import ProfileDropdown from '@/components/shadcn-studio/blocks/dropdown-profile'
 
-import {
-  LanguagesIcon
-} from 'lucide-react'
+import { LanguagesIcon } from 'lucide-react'
 import React from 'react'
 
 import { NAV_HEADER, NAV_MAIN, NAV_PAGES, NAV_SUPPORT } from './shell.config'
 
 
+const ShellInner = ({ children }: { children: React.ReactNode }) => {
+  const breadcrumbs = useBreadcrumbSegments()
 
-
-interface ShellProps {
-  children: React.ReactNode
-  /**
-   * Breadcrumb segments for the current page.
-   * The last item is always rendered as the active (non-linked) crumb.
-   *
-   * @example [{ label: 'Home', href: '/' }, { label: 'Dashboard' }]
-   */
-  breadcrumbs?: BreadcrumbSegment[]
-}
-
-/**
- * Shell
- *
- * Full-page layout that renders the sidebar, header, footer, and a
- * `<main>` region. Only `children` and `breadcrumbs` change per route.
- *
- * Wrap your Next.js root layout (or a nested layout) with this component:
- *
- *   // app/dashboard/layout.tsx
- *   export default function DashboardLayout({ children }) {
- *     return (
- *       <Shell breadcrumbs={[{ label: 'Home', href: '/' }, { label: 'Dashboard' }]}>
- *         {children}
- *       </Shell>
- *     )
- *   }
- *
- * Each page file just renders its own content — no need to repeat chrome.
- */
-const Shell = ({ children, breadcrumbs }: ShellProps) => {
   return (
     <div className='flex h-dvh w-full overflow-hidden'>
       <SidebarProvider>
@@ -68,18 +39,20 @@ const Shell = ({ children, breadcrumbs }: ShellProps) => {
         {/* ── Sidebar ── */}
         <Sidebar>
           <SidebarContent>
+
             <SidebarHeader>
-                    <SidebarMenu>
-                      <SidebarMenuItem>
-                        <SidebarMenuButton size="lg" asChild>
-                          <a href="#">
-                            <NAV_HEADER.icon />
-                            <span>{NAV_HEADER.label}</span>
-                          </a>
-                        </SidebarMenuButton>
-                      </SidebarMenuItem>
-                    </SidebarMenu>
-                  </SidebarHeader>
+              <SidebarMenu>
+                <SidebarMenuItem>
+                  <SidebarMenuButton size='lg' asChild>
+                    <a href={NAV_HEADER.href}>
+                      <NAV_HEADER.icon />
+                      <span>{NAV_HEADER.label}</span>
+                    </a>
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+              </SidebarMenu>
+            </SidebarHeader>
+
             {/* Main */}
             <SidebarGroup>
               <SidebarGroupContent>
@@ -116,7 +89,7 @@ const Shell = ({ children, breadcrumbs }: ShellProps) => {
                           <span>{item.label}</span>
                         </a>
                       </SidebarMenuButton>
-                      {item.badge != null && (
+                      {'badge' in item && item.badge != null && (
                         <SidebarMenuBadge className='bg-primary/10 top-1/2! right-2 -translate-y-1/2! rounded-full'>
                           {item.badge}
                         </SidebarMenuBadge>
@@ -157,7 +130,7 @@ const Shell = ({ children, breadcrumbs }: ShellProps) => {
             <div className='mx-auto flex w-full items-center justify-between gap-6 px-4 py-2 sm:px-6'>
               <div className='flex items-center gap-4'>
                 <SidebarTrigger className='[&_svg]:size-5!' />
-                {breadcrumbs?.length ? (
+                {breadcrumbs.length > 0 && (
                   <>
                     <Separator
                       orientation='vertical'
@@ -168,7 +141,7 @@ const Shell = ({ children, breadcrumbs }: ShellProps) => {
                       className='hidden sm:block'
                     />
                   </>
-                ) : null}
+                )}
               </div>
 
               <div className='flex items-center gap-1.5'>
@@ -206,5 +179,28 @@ const Shell = ({ children, breadcrumbs }: ShellProps) => {
     </div>
   )
 }
+
+// ─── Shell (public) ───────────────────────────────────────────────────────────
+
+interface ShellProps {
+  children: React.ReactNode
+}
+
+/**
+ * Shell
+ *
+ * Mount once in your root layout. Breadcrumbs are controlled independently
+ * via the <Breadcrumb> component or the useBreadcrumb() hook — no prop needed here.
+ *
+ * // app/layout.tsx
+ * export default function RootLayout({ children }) {
+ *   return <Shell>{children}</Shell>
+ * }
+ */
+const Shell = ({ children }: ShellProps) => (
+  <BreadcrumbProvider>
+    <ShellInner>{children}</ShellInner>
+  </BreadcrumbProvider>
+)
 
 export { Shell }

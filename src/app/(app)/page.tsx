@@ -1,10 +1,14 @@
+import { Breadcrumb } from '@/components/shared/shell/breadcrumb.setter'
 import { Page } from '@/components/shared/shell/page'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 
 export default function DashboardPage() {
   return (
-    
+    <><Breadcrumb segments={[
+        { label: 'Home',     href: '/' },
+        { label: 'Dashboard', href: '/dashboard' },      
+      ]} />
     <Page>
  
       <Page.Header>
@@ -23,28 +27,8 @@ export default function DashboardPage() {
           <CardContent className='h-full'>
             <div className='h-full rounded-md border bg-[repeating-linear-gradient(45deg,var(--muted),var(--muted)_1px,var(--card)_2px,var(--card)_15px)]' />
           </CardContent>
-        </Card><Card className='h-96'>
-          <CardContent className='h-full'>
-            <div className='h-full rounded-md border bg-[repeating-linear-gradient(45deg,var(--muted),var(--muted)_1px,var(--card)_2px,var(--card)_15px)]' />
-          </CardContent>
-        </Card><Card className='h-96'>
-          <CardContent className='h-full'>
-            <div className='h-full rounded-md border bg-[repeating-linear-gradient(45deg,var(--muted),var(--muted)_1px,var(--card)_2px,var(--card)_15px)]' />
-          </CardContent>
-        </Card><Card className='h-96'>
-          <CardContent className='h-full'>
-            <div className='h-full rounded-md border bg-[repeating-linear-gradient(45deg,var(--muted),var(--muted)_1px,var(--card)_2px,var(--card)_15px)]' />
-          </CardContent>
-        </Card><Card className='h-96'>
-          <CardContent className='h-full'>
-            <div className='h-full rounded-md border bg-[repeating-linear-gradient(45deg,var(--muted),var(--muted)_1px,var(--card)_2px,var(--card)_15px)]' />
-          </CardContent>
-        </Card><Card className='h-96'>
-          <CardContent className='h-full'>
-            <div className='h-full rounded-md border bg-[repeating-linear-gradient(45deg,var(--muted),var(--muted)_1px,var(--card)_2px,var(--card)_15px)]' />
-          </CardContent>
         </Card>
       </Page.Content>
-    </Page>
+    </Page></>
   )
 }
