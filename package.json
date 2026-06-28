@@ -10,7 +10,8 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "prepare": "husky",
-    "lint-staged": "lint-staged"
+    "lint-staged": "lint-staged",
+    "new:route": "bash scripts/newRoute.sh"
   },
   "dependencies": {
     "@tabler/icons-react": "^3.44.0",
