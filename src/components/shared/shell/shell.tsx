@@ -18,13 +18,13 @@ import {
   SidebarTrigger,
 } from '@/components/ui/sidebar';
 
-import AppBreadcrumb from '@/components/shared/shell/breadcrumb';
+import AppBreadcrumb from '@/components/shared/breadcrumbs/breadcrumb';
 import {
   BreadcrumbProvider,
   useBreadcrumbSegments,
-} from '@/components/shared/shell/breadcrumb.context';
-import LanguageDropdown from '@/components/shadcn-studio/blocks/dropdown-language';
-import ProfileDropdown from '@/components/shadcn-studio/blocks/dropdown-profile';
+} from '@/components/shared/breadcrumbs/breadcrumb.context';
+import LanguageDropdown from '@/components/shared/shell/dropdown-language';
+import ProfileDropdown from '@/components/shared/shell/dropdown-profile';
 
 import { LanguagesIcon } from 'lucide-react';
 import React from 'react';

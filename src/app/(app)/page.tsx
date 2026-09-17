@@ -1,5 +1,5 @@
-import { Breadcrumb } from '@/components/shared/shell/breadcrumb.setter';
-import { Page } from '@/components/shared/shell/page';
+import { Breadcrumb } from '@/components/shared/breadcrumbs/breadcrumb.setter';
+import { Page } from '@/components/shared/pages/page';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 
