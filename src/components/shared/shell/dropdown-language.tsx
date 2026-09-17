@@ -27,9 +27,7 @@ const LanguageDropdown = ({ defaultOpen, align, trigger }: Props) => {
         <DropdownMenuRadioGroup value={language} onValueChange={setLanguage}>
           <DropdownMenuRadioItem value="english">English</DropdownMenuRadioItem>
           <DropdownMenuRadioItem value="german">Deutsch</DropdownMenuRadioItem>
-          <DropdownMenuRadioItem value="spanish">Española</DropdownMenuRadioItem>
           <DropdownMenuRadioItem value="portuguese">Português</DropdownMenuRadioItem>
-          <DropdownMenuRadioItem value="korean">한국인</DropdownMenuRadioItem>
         </DropdownMenuRadioGroup>
       </DropdownMenuContent>
     </DropdownMenu>
