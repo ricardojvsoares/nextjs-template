@@ -31,7 +31,9 @@ import React from 'react';
 
 import { NAV_HEADER, NAV_MAIN, NAV_PAGES, NAV_SUPPORT } from './shell.config';
 
-const ShellInner = ({ children }: { children: React.ReactNode }) => {
+type ShellUser = { displayName: string; email: string };
+
+const ShellInner = ({ children, user }: { children: React.ReactNode; user?: ShellUser }) => {
   const breadcrumbs = useBreadcrumbSegments();
 
   return (
@@ -148,6 +150,7 @@ const ShellInner = ({ children }: { children: React.ReactNode }) => {
                   }
                 />
                 <ProfileDropdown
+                  user={user}
                   trigger={
                     <Button variant="ghost" size="icon-lg">
                       <Avatar className="size-[inherit] rounded-[inherit] after:rounded-[inherit]">
@@ -176,6 +179,7 @@ const ShellInner = ({ children }: { children: React.ReactNode }) => {
 
 interface ShellProps {
   children: React.ReactNode;
+  user?: ShellUser;
 }
 
 /**
@@ -189,9 +193,9 @@ interface ShellProps {
  *   return <Shell>{children}</Shell>
  * }
  */
-const Shell = ({ children }: ShellProps) => (
+const Shell = ({ children, user }: ShellProps) => (
   <BreadcrumbProvider>
-    <ShellInner>{children}</ShellInner>
+    <ShellInner user={user}>{children}</ShellInner>
   </BreadcrumbProvider>
 );
 
