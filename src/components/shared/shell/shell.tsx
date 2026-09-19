@@ -154,11 +154,9 @@ const ShellInner = ({ children, user }: { children: React.ReactNode; user?: Shel
                   trigger={
                     <Button variant="ghost" size="icon-lg">
                       <Avatar className="size-[inherit] rounded-[inherit] after:rounded-[inherit]">
-                        <AvatarImage
-                          src="https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-1.png"
-                          className="rounded-[inherit]"
-                        />
-                        <AvatarFallback className="rounded-[inherit]">JD</AvatarFallback>
+                        <AvatarFallback className="rounded-[inherit]">
+                          {user?.displayName[0]}
+                        </AvatarFallback>
                       </Avatar>
                     </Button>
                   }

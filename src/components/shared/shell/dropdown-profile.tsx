@@ -27,15 +27,6 @@ type Props = {
   user?: { displayName: string; email: string };
 };
 
-function initials(displayName: string) {
-  return displayName
-    .split(' ')
-    .filter(Boolean)
-    .slice(0, 2)
-    .map((part) => part[0]?.toUpperCase() ?? '')
-    .join('');
-}
-
 const ProfileDropdown = ({ trigger, defaultOpen, align = 'end', user }: Props) => {
   return (
     <DropdownMenu defaultOpen={defaultOpen}>
@@ -44,21 +35,13 @@ const ProfileDropdown = ({ trigger, defaultOpen, align = 'end', user }: Props) =
         <DropdownMenuLabel className="flex items-center gap-4 px-4 py-2.5 font-normal">
           <div className="relative">
             <Avatar size="lg">
-              <AvatarImage
-                src="https://cdn.shadcnstudio.com/ss-assets/avatar/avatar-1.png"
-                alt="John Doe"
-              />
-              <AvatarFallback>{user ? initials(user.displayName) : 'JD'}</AvatarFallback>
+              <AvatarFallback>{user?.displayName[0]}</AvatarFallback>
             </Avatar>
             <span className="ring-card absolute right-0 bottom-0 block size-2 rounded-full bg-green-600 ring-2" />
           </div>
           <div className="flex flex-1 flex-col items-start">
-            <span className="text-foreground text-lg font-semibold">
-              {user?.displayName ?? 'John Doe'}
-            </span>
-            <span className="text-muted-foreground text-base">
-              {user?.email ?? 'john.doe@example.com'}
-            </span>
+            <span className="text-foreground text-lg font-semibold">{user?.displayName}</span>
+            <span className="text-muted-foreground text-sm">{user?.email}</span>
           </div>
         </DropdownMenuLabel>
 
